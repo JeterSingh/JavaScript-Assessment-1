@@ -10,3 +10,41 @@ var jsHistory = 'JavaScript, not to be confused with Java, was created in 10 day
 //3. Given the following sentence: Uppercase the word scream each time it appears in the sentence
 
 var text = 'I scream, you scream, we all scream for icecream';
+var newSentence = sentence.replace(/ i/g, " I"); 
+// g tag denotes global replace, otherwise only first instance will be impacted. THis is how to do it without loops and arrays
+// I learned how to do this and then tried to do it the long way
+var newText = text.replace(/scream/g, "Scream");
+var newSentence1 = "";
+var senLen = sentence.length;
+
+
+// String.prototype.replaceAt=function(index, character) {
+//     return this.substr(0, index) + character + this.substr(index+1,character.length - index);
+// } I tried to use a function here but this doesnt work as strings are immutable
+
+// replace function using a for loop
+// this doesnt work as you use the original sentence string which hasnt changed so only the last 'i' gets replaced with 'I'
+for (var i = 0; i < senLen; i++) {
+    currentChar = sentence.charAt(i);
+    lastChar = sentence.charAt(Math.max(i-1,0));
+   
+    if (currentChar === "i" && lastChar === " ") {
+      newSentence1 = sentence.substr(0,i)+'I'+ sentence.substr(i+1,senLen-i); // since you are using original variable, lose changed
+    }
+}
+console.log('Original sentence : ' + sentence);
+console.log('Fix using shorthand : ' + newSentence);
+console.log('Fix using a loop to walk through the string - doesnt work as you rely on original sentence that hasnt changed : '+newSentence1);
+console.log(text);
+console.log(newText);
+
+var temp = sentence.split(" "); // this is the best longhand solution; split the string to make it an array that can be manipulated
+for (var i = 0; i < temp.length; i++) {
+    if (temp[i] === "i") {
+        temp[i] = "I";
+    }
+}
+var temp1 = temp.join(" ");
+console.log(temp);
+console.log("This was done using strings and arrays : " +temp1);
+

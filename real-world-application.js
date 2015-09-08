@@ -2,6 +2,7 @@
 * To do this you need to lowercase and hyphenate each color in the following array.
 * You can not edit the values in the array by hand as your boss is wanting a loop that can be applied to any set of crayola boxes in the future
 */
+
 var crayola1990 = [
 	'Scarlet',
 	'Sunset Orange',
@@ -58,10 +59,24 @@ var crayola1990 = [
 	'Antique Brass'
 ];
 
-//create a loop that will iterate over each item in the array and then use the String methods to modify the value at the current position in the array
+var tempArray = [];
+var newArray = [];
 
+var len = crayola1990.length;
+var tempValue = "";
+
+//create a loop that will iterate over each item in the array and then use the String methods to modify the value at the current position in the array
+for (var i=0; i<len; i++) {
+   tempValue = crayola1990[i].split(" "); // an array of strings. Split breaks a string into an array of indiv strings
+   tempArray[i] = tempValue.join("-"); // an actual string so you can run string functions
+}
 /***** HINTS *******
  * remember strings are immutable but the value of a variable can be adjusted as often as needed.
  * take advantage of the methods available on stings http://www.w3schools.com/js/js_string_methods.asp
  * there are multiple ways to do something like this but you might consider using split and join
  */ 
+ console.log(tempArray);
+ for (var i=0; i<tempArray.length; i++) {
+   newArray[i] = tempArray[i].toLowerCase();
+}
+console.log(newArray);
